@@ -3,7 +3,6 @@ package main
 import (
 	"crud-oportunides/config"
 	"crud-oportunides/router"
-	"fmt"
 )
 
 var (
@@ -12,9 +11,10 @@ var (
 
 func main() {
 	logger = config.GetLogger("main")
+	//inicializando o config
 	err := config.Init()
 	if err != nil {
-		fmt.Println(err)
+		logger.Error("Error initializing config:", err)
 		return
 	}
 	router.Initialize()

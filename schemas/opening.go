@@ -3,7 +3,6 @@ package schemas
 import (
 	"gorm.io/gorm"
 )
-
 type Opening struct {
 	gorm.Model
 	Role string 
@@ -11,5 +10,5 @@ type Opening struct {
 	Location string
 	Remote bool
 	Link string 
-	Salary string
+	Salary int64
 }
