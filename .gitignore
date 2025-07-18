@@ -1,0 +1,12 @@
+*.exe
+*.dil
+*.so
+*.dylib
+
+*.test 
+
+*.out
+
+Db folder
+
+db/

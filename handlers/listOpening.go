@@ -5,8 +5,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func handler(ctx *gin.Context) {
+func ListOpeningsHandler(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
-		"mgs": "handler routes called",
+		"mgs": "ListOpeningsHandler called",
 	})
 }
