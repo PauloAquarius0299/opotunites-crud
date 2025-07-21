@@ -1,12 +1,21 @@
-package handlers 
+package handlers
 
 import (
-	"net/http"
-	"github.com/gin-gonic/gin"
+	"crud-oportunides/config"
+	"gorm.io/gorm"
 )
 
-func handler(ctx *gin.Context) {
-	ctx.JSON(http.StatusOK, gin.H{
-		"mgs": "handler routes called",
-	})
+var (
+	logger *config.Logger
+	db     *gorm.DB
+)
+
+func InitializeHandler() {
+	logger = config.GetLogger("handlers")
+	var err error
+	db, err = config.InitializePostgreSQL() // Substitui GetSQLite por InitializePostgreSQL
+	if err != nil {
+		logger.Errorf("Failed to initialize PostgreSQL: %v", err)
+		panic(err) // Ou trate o erro de forma adequada
+	}
 }

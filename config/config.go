@@ -7,26 +7,30 @@ import (
 )
 
 var (
-	db *gorm.DB
+	db     *gorm.DB
 	logger *Logger
 )
 
+// Init initializes the PostgreSQL database connection
 func Init() error {
-	var err error 
+	logger = GetLogger("config") // Initialize logger for the config package
 
-	db, err = InitializeSQLite()
-
-	if err == nil {
-		return fmt.Errorf("Error initializing database: %v", err)
+	var err error
+	db, err = InitializePostgreSQL()
+	if err != nil {
+		logger.Errorf("Error initializing database: %v", err)
+		return fmt.Errorf("error initializing PostgreSQL: %w", err)
 	}
 
 	return nil
 }
 
-func GetSQLite() *gorm.DB {
+// GetDB returns the PostgreSQL database instance
+func GetDB() *gorm.DB {
 	return db
 }
 
+// GetLogger returns a logger instance
 func GetLogger(p string) *Logger {
 	logger = NewLogger(p)
 	return logger
