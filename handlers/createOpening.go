@@ -1,12 +1,16 @@
-package handlers 
+package handlers
 
 import (
-	"net/http"
 	"github.com/gin-gonic/gin"
 )
 
 func CreateOpeningHandler(ctx *gin.Context) {
-	ctx.JSON(http.StatusOK, gin.H{
-		"mgs": "CreateOpeningHandler called",
-	})
+	request := CreateOpeningRequest{}
+
+	ctx.BindJSON(&request)
+
+	if err := db.Create(&request).Error; err != nil{
+		logger.Errorf("Error creating opening: %v ", err.Error())
+		return
+	}
 }
