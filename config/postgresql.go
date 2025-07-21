@@ -46,7 +46,7 @@ func InitializePostgreSQL() (*gorm.DB, error) {
 	}
 
 	// Run migrations
-	err = db.AutoMigrate(&schemas.OpeningResponse{})
+	err = db.AutoMigrate(&schemas.Opening{})
 	if err != nil {
 		logger.Errorf("Error migrating database: %v", err)
 		return nil, err

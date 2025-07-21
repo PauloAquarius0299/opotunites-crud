@@ -16,6 +16,9 @@ type CreateOpeningRequest struct {
 }
 
 func (r *CreateOpeningRequest) Validate() error {
+	if r.Role == "" && r.Company == "" && r.Location == "" && r.Salary >= 0 { 
+		return fmt.Errorf("request cannot be nil")
+	}
 	if r.Role == "" {
 		return errParmIsRequired("Role", "string")
 	}
